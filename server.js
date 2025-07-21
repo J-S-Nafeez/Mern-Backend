@@ -18,16 +18,22 @@ const dbpass = encodeURIComponent(process.env.DBPASS);
 //   });
 // });
 
+try{
 mongoose
   .connect(
     // `mongodb+srv://${dbuser}:${dbpass}@cluster0.qjxhv.mongodb.net/merncafe?retryWrites=true&w=majority&appName=Cluster0`
-    `mongodb+srv://${dbuser}:${dbpass}@cluster0.hgbdiij.mongodb.net/merncafe`
+    `mongodb+srv://${dbuser}:${dbpass}@cluster0.hgbdiij.mongodb.net/CafeDB`
   )
   .then(() => {
     app.listen(8080, () => {
       console.log("Server started");
+
     });
   });
+}
+catch(err){
+  console.log(err);
+}
 
 app.use("/api/users", userRouter);
 app.use("/api/products", productRouter);
